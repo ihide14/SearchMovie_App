@@ -4,6 +4,7 @@ export function useServices() {
 
     const API_KEY = "7725876f"
 
+    /* The change to make the url HTTPs*/
     const API_URL = `https://www.omdbapi.com/?apikey=${API_KEY}&`
 
     const getMovie = (movie) => {
