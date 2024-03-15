@@ -1,0 +1,51 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.Search {
+    display: flex;
+    place-items: center;
+    text-align: center;
+    flex-direction: column;
+    width: 100vw;
+}
+
+.Search form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.Search form input:first-child {
+    width: 90%;
+}
+
+
+.DirectoryMovies {
+    display: grid;
+    width: 100vw;
+    padding: 15px;
+    box-sizing: border-box;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    column-gap: 25px;
+}
+
+.MoviCard {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+
+}
+
+.MoviCard p:first-child {
+    font-weight: bold;
+    font-size: larger;
+
+}
+
+.MoviCard img {
+    border-radius: 10px;
+    height: 300px;
+}
