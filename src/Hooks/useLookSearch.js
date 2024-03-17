@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { useServices } from "./useServices"
 
 export function useLookSearch() {
@@ -7,6 +7,7 @@ export function useLookSearch() {
     const [search, setSearch] = useState("")
     const [error, setError] = useState(null)
     const getMovie = useServices()
+    const prevSearch = useRef(null)
 
     const lookSearch = (event) => {
         event.preventDefault()
@@ -25,8 +26,8 @@ export function useLookSearch() {
 
             return null
         }
-
         setSearch(valueInput)
+
 
     }
 
@@ -44,6 +45,16 @@ export function useLookSearch() {
 
         }
 
+        if (prevSearch.current === search) {
+            setError("No puedes realizar la misma busqueda.")
+
+            setTimeout(() => {
+                setError(null)
+            }, 5000)
+
+            return
+        }
+
         getMovie(search).then(data => {
             if (data.Response === "False") {
                 setError(data.Error)
@@ -54,13 +65,14 @@ export function useLookSearch() {
                 }, 5000)
 
             }
+
             else {
+                prevSearch.current = search
                 const reformedData = {
                     status: data.Response,
                     Results: data.Search,
                     Total: data.totalResults
                 }
-                console.log(reformedData)
                 setMovies(reformedData)
                 setError(null)
             }
