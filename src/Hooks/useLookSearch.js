@@ -13,10 +13,6 @@ export function useLookSearch() {
         event.preventDefault()
         const valueInput = event.target.value
 
-        if (valueInput?.length === 0) {
-            setMovies(null)
-        }
-
         if (valueInput.startsWith(" ")) {
             setError("La pelicula no puede iniciar con un espacio")
 
